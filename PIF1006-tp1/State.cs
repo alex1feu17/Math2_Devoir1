@@ -8,17 +8,22 @@ namespace PIF1006_tp1
 {
     public class State
     {
-        public bool IsFinal {get; set;}
+        public bool IsFinal { get; set; }
         public string Name { get; private set; }
         public List<Transition> Transitions { get; private set; }
 
-        public State (string name, bool isFinal)
+        public State(string name, bool isFinal)
         {
             Name = name;
             IsFinal = isFinal;
             Transitions = new List<Transition>();
         }
 
-        // Au besoin, vous pouvez ajouter du code ici, au min. de redéfinir ToString()
+        public override string ToString()
+        {
+            String res = Name + (IsFinal ? " (final) :" : " :") + "\n";
+            Transitions.ForEach(x => res += x.ToString());
+            return res + "\n";
+        }
     }
 }
